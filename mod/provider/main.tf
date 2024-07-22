@@ -43,7 +43,7 @@ locals {
 resource "terraform_data" "execute" {
   triggers_replace = timestamp()
   provisioner "local-exec" {
-    command = "echo $TF_PLUGIN_CACHE_DIR && cd output/${var.data} && terraform init"
+    command = "echo $TF_PLUGIN_CACHE_DIR && cd ${path.cwd}/output/${var.data} && terraform init"
     environment = {
       TF_PLUGIN_CACHE_DIR = "${local.cwd}/.cache"
     }
